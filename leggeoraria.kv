@@ -1,0 +1,75 @@
+<MDScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: topbar
+            elevation: 4
+            title: "Legge Oraria Calculator"
+            right_action_items: [["close-thick", lambda x: app.stop()]]
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: 40
+            MDBoxLayout:
+                orientation: 'vertical'
+            MDTextField:
+                id: distance
+                required: True
+                size_hint: .8, None
+                pos_hint: {'center_x': .5,'center_y': .5}
+                mode: "rectangle"
+                helper_text_mode: "on_error"
+                helper_text: "Unknown values must be set to \"0\""
+                hint_text: "Insert distance here:"
+                text: "0"
+            MDTextField:
+                id: speed
+                required: True
+                size_hint: .8, None
+                pos_hint: {'center_x': .5,'center_y': .5}
+                mode: "rectangle"
+                helper_text_mode: "on_error"
+                helper_text: "Unknown values must be set to \"0\""
+                hint_text: "Insert speed here:"
+                text: "0"
+            MDTextField:
+                id: time
+                required: True
+                size_hint: .8, None
+                pos_hint: {'center_x': .5,'center_y': .5}
+                mode: "rectangle"
+                helper_text_mode: "on_error"
+                helper_text: "Unknown values must be set to \"0\""
+                hint_text: "Insert time here:"
+                text: "0"
+            MDTextField:
+                id: i_distance
+                required: True
+                size_hint: .8, None
+                pos_hint: {'center_x': .5,'center_y': .5}
+                mode: "rectangle"
+                helper_text_mode: "on_error"
+                helper_text: "Unknown values must be set to \"0\""
+                hint_text: "Insert initial distance here:"
+                text: "0"
+            MDTextField:
+                id: i_time
+                required: True
+                size_hint: .8, None
+                pos_hint: {'center_x': .5,'center_y': .5}
+                mode: "rectangle"
+                helper_text_mode: "on_error"
+                helper_text: "Unknown values must be set to \"0\""
+                hint_text: "Insert initial time here:"
+                text: "0"
+            MDBoxLayout:
+                orientation: 'vertical'
+        MDFillRoundFlatIconButton:
+            id: btn1
+            icon: "calculator"
+            text: "Calculate"
+            size_hint: .6, .1
+            pos_hint: {'center_x': .5,'center_y': .9}
+            on_release: root.do_math(root.ids.distance.text, root.ids.speed.text, root.ids.time.text, root.ids.i_distance.text, root.ids.i_time.text)
+        MDLabel:
+            size_hint_y: .025
+            text: ""
