@@ -160,8 +160,8 @@ cython_debug/
 #.idea/
 
 # Buildozer Folder
-.buildozer
+.buildozer/
 
 # Visual Studio Code
-.vscode
+.vscode/
 
