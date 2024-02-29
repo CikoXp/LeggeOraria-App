@@ -3,73 +3,158 @@
         orientation: 'vertical'
         MDTopAppBar:
             id: topbar
-            elevation: 4
             title: "Legge Oraria Calculator"
             right_action_items: [["close-thick", lambda x: app.stop()]]
         MDBoxLayout:
             orientation: 'vertical'
-            spacing: 40
+            size_hint_y: .01
+            md_bg_color: [.1, .2, .3]
+        MDBoxLayout:
+            orientation: 'horizontal'
+            md_bg_color: [.1, .2, .3]
             MDBoxLayout:
                 orientation: 'vertical'
-            MDTextField:
-                id: distance
-                required: True
-                size_hint: .8, None
-                pos_hint: {'center_x': .5,'center_y': .5}
-                mode: "rectangle"
-                helper_text_mode: "on_error"
-                helper_text: "Unknown values must be set to \"0\""
-                hint_text: "Insert distance here:"
-                text: "0"
-            MDTextField:
-                id: speed
-                required: True
-                size_hint: .8, None
-                pos_hint: {'center_x': .5,'center_y': .5}
-                mode: "rectangle"
-                helper_text_mode: "on_error"
-                helper_text: "Unknown values must be set to \"0\""
-                hint_text: "Insert speed here:"
-                text: "0"
-            MDTextField:
-                id: time
-                required: True
-                size_hint: .8, None
-                pos_hint: {'center_x': .5,'center_y': .5}
-                mode: "rectangle"
-                helper_text_mode: "on_error"
-                helper_text: "Unknown values must be set to \"0\""
-                hint_text: "Insert time here:"
-                text: "0"
-            MDTextField:
-                id: i_distance
-                required: True
-                size_hint: .8, None
-                pos_hint: {'center_x': .5,'center_y': .5}
-                mode: "rectangle"
-                helper_text_mode: "on_error"
-                helper_text: "Unknown values must be set to \"0\""
-                hint_text: "Insert initial distance here:"
-                text: "0"
-            MDTextField:
-                id: i_time
-                required: True
-                size_hint: .8, None
-                pos_hint: {'center_x': .5,'center_y': .5}
-                mode: "rectangle"
-                helper_text_mode: "on_error"
-                helper_text: "Unknown values must be set to \"0\""
-                hint_text: "Insert initial time here:"
-                text: "0"
+                size_hint_x: .02
+            AnchorLayout:
+                size_hint: .5, 1
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: 40
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        spacing: 20
+                        MDLabel:
+                            text: "Moto Rettilineo Uniforme"
+                    MDTextField:
+                        id: mru_distance
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert distance here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mru_i_distance.focus = True
+                    MDTextField:
+                        id: mru_i_distance
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert initial distance here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mru_speed.focus = True
+                    MDTextField:
+                        id: mru_speed
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert speed here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mru_time.focus = True
+                    MDTextField:
+                        id: mru_time
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert time here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mru_i_time.focus = True
+                    MDTextField:
+                        id: mru_i_time
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert initial time here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mrua_acceleration.focus = True
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                    MDFillRoundFlatIconButton:
+                        id: btn1
+                        icon: "calculator"
+                        text: "CALC MRU"
+                        size_hint: .6, .1
+                        pos_hint: {'center_x': .5,'center_y': .9}
+                        on_release: root.do_mru_math(root.ids.mru_distance.text, root.ids.mru_i_distance.text, root.ids.mru_speed.text, root.ids.mru_time.text, root.ids.mru_i_time.text)
             MDBoxLayout:
                 orientation: 'vertical'
-        MDFillRoundFlatIconButton:
-            id: btn1
-            icon: "calculator"
-            text: "Calculate"
-            size_hint: .6, .1
-            pos_hint: {'center_x': .5,'center_y': .9}
-            on_release: root.do_math(root.ids.distance.text, root.ids.speed.text, root.ids.time.text, root.ids.i_distance.text, root.ids.i_time.text)
+                size_hint_x: .02
+            AnchorLayout:
+                size_hint: .5, 1
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: 40
+                    MDLabel:
+                        text: "Moto Rettilineo"
+                    MDTextField:
+                        id: mrua_acceleration
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert acceleration here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mrua_i_speed.focus = True
+                    MDTextField:
+                        id: mrua_i_speed
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert initial speed here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mrua_f_speed.focus = True
+                    MDTextField:
+                        id: mrua_f_speed
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert final speed here:"
+                        input_filter: "float"
+                        text: "0"
+                        on_text_validate: mrua_f_time.focus = True
+                    MDTextField:
+                        id: mrua_f_time
+                        required: True
+                        pos_hint: {'center_x': .5,'center_y': .5}
+                        mode: "rectangle"
+                        helper_text_mode: "on_error"
+                        helper_text: "Unknown values must be set to \"0\""
+                        hint_text: "Insert final time here:"
+                        input_filter: "float"
+                        text: "0"
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                    MDFillRoundFlatIconButton:
+                        id: btn1
+                        icon: "calculator"
+                        text: "CALC MRUA"
+                        size_hint: .6, .1
+                        pos_hint: {'center_x': .5,'center_y': .9}
+                        on_release: root.do_mrua_math(root.ids.mrua_acceleration.text, root.ids.mru_distance.text, root.ids.mru_i_distance.text, root.ids.mru_speed.text, root.ids.mrua_i_speed.text, root.ids.mrua_f_speed.text, root.ids.mru_time.text, root.ids.mru_i_time.text, root.ids.mrua_f_time.text)
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_x: .02
         MDLabel:
-            size_hint_y: .025
+            md_bg_color: [.1, .2, .3]
+            size_hint_y: .01
             text: ""
