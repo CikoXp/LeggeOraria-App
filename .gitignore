@@ -161,6 +161,8 @@ cython_debug/
 
 # Buildozer Folder
 .buildozer/
+bin/
+*.apk
 
 # Visual Studio Code
 .vscode/
